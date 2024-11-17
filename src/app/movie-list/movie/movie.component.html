@@ -1,0 +1,18 @@
+<div class="relative">
+    <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" alt="{{ movie.title }}" class="rounded-md w-full" />
+    <span class="absolute top-2 left-2 bg-gray-300 color-gray-900 text-xs px-2 py-1 rounded-lg shadow-md uppercase">TV Series</span>
+  </div>
+  <div class="mt-2 text-center">
+    <p class="text-xs text-gray-500">{{ movie.release_date }}</p>
+    <h3 class="text-md font-bold text-gray-900 truncate">{{ movie.title }}</h3>
+  </div>
+  <div class="flex items-center justify-between mt-2 text-xs text-gray-700">
+    <div class="flex items-center gap-1">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" alt="IMDB" class="h-4">
+      <span>{{ convertNumber(movie.vote_average) }} / 10</span>
+    </div>
+    <div class="flex items-center gap-1">
+      <span class="text-red-500">🍅</span>
+      <span>{{calculatePercentage(movie.vote_average) + '%'}}</span>
+    </div>
+  </div>

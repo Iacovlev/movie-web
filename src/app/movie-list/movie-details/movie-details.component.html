@@ -1,0 +1,68 @@
+    <div class="w-full h-full flex justify-center items-center p-6 bg-gray-100">
+        <div class="w-full max-w-4xl flex flex-col lg:flex-row gap-8 bg-white rounded-lg shadow-lg p-6">
+            <div class="flex-shrink-0">
+                <img 
+                    [src]="'https://image.tmdb.org/t/p/w500/' + selectedMovie.poster_path" 
+                    alt="{{ selectedMovie.title }}" 
+                    class="rounded-lg shadow-md w-72 h-auto object-cover" 
+                />
+            </div>
+            <div class="flex-1">
+                <p class="text-3xl font-bold text-gray-900">{{selectedMovie.title}}</p>
+                <p class="text-sm text-gray-500 italic mt-1">{{selectedMovie.tagline}}</p>
+                <div class="flex items-center text-lg text-yellow-500 mt-2">
+                    <span class="font-medium">Rating:</span>
+                    <span class="ml-1">{{selectedMovie.vote_average}}</span>
+                    <span class="mx-2 text-gray-400">|</span>
+                    <span class="text-sm text-gray-600">({{selectedMovie.vote_count}} votes)</span>
+                </div>
+                <div class="text-base text-gray-700 mt-4 space-y-4">
+                    <p>{{selectedMovie.overview}}</p>
+                    <p><strong class="font-semibold">Release Date:</strong> {{selectedMovie.release_date}}</p>
+                    <p>
+                        <strong class="font-semibold">Genres:</strong>
+                        <span class="text-gray-800">
+                            @for (genre of selectedMovie.genres; track $index; let isLast = $last ) {
+                                <span>
+                                    {{genre.name}}@if (!isLast){<span>, </span>}
+                                </span>
+                            }
+                        </span>
+                    </p>
+                    <p><strong class="font-semibold">Duration:</strong> {{selectedMovie.runtime}} min</p>
+                    <p><strong class="font-semibold">Budget:</strong> 
+                        <span class="text-green-600">${{selectedMovie.budget}}</span>
+                    </p>
+                    <p><strong class="font-semibold">Revenue:</strong> 
+                        <span class="text-blue-600">${{selectedMovie.revenue}}</span>
+                    </p>
+                    <p><strong class="font-semibold">Production Companies:</strong></p>
+                    <ul class="list-disc list-inside text-gray-800">
+                        @for (company of selectedMovie.production_companies; track $index) {
+                            <li>{{company.name}}</li>
+                        }
+                    </ul>
+                    <p>
+                        <strong class="font-semibold">Original Language:</strong> 
+                        <span class="uppercase text-gray-800">{{selectedMovie.original_language}}</span>
+                    </p>
+                    <p>
+                        <strong class="font-semibold">Origin Country:</strong>
+                        <span class="text-gray-800">
+                            @for (country of selectedMovie.origin_country; track $index; let isLast = $last) {
+                                <span>
+                                    {{country}}@if (!isLast){<span>, </span>}
+                                </span>
+                            }
+                        </span>
+                    </p>
+                    <p>
+                        <strong class="font-semibold">Homepage:</strong> 
+                        <a href="{{selectedMovie.homepage}}" class="text-blue-500 underline hover:text-blue-700" target="_blank">
+                            Visit Homepage
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
